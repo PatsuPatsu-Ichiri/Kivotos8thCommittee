@@ -78,23 +78,17 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		// 子菜单
 		children: [
 			{
-				name: "GitHub",
-				url: "https://github.com/CuteLeaf/Firefly",
+				name: "GitHub仓库",
+				url: "https://github.com/PatsuPatsu-Ichiri/Kivotos8thCommittee",
 				external: true,
 				icon: "fa7-brands:github",
 			},
-			{
-				name: "Gitee",
-				url: "https://gitee.com/CuteLeaf/Firefly",
-				external: true,
-				icon: "fa7-brands:gitee",
-			},
-			{
+			/*{
 				name: "QQ交流群",
 				url: "https://qm.qq.com/q/ZGsFa8qX2G",
 				external: true,
 				icon: "fa7-brands:qq",
-			},
+			},*/
 			{
 				name: "Firefly文档",
 				url: "https://docs-firefly.cuteleaf.cn",
@@ -146,13 +140,13 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		icon: "material-symbols:tag-rounded",
 	},
 	Friends: {
-		name: "友链",
+		name: "特色栏目",
 		url: "/friends/",
 		icon: "material-symbols:group",
 		pageKey: "friends",
 	},
 	Sponsor: {
-		name: "打赏",
+		name: "捐赠",
 		url: "/sponsor/",
 		icon: "material-symbols:favorite",
 		pageKey: "sponsor",
