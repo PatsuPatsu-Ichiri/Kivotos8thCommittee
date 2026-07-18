@@ -23,32 +23,32 @@ export const friendsPageConfig: FriendsPageConfig = {
 // 友链配置
 export const friendsConfig: FriendLink[] = [
 	{
-		title: "夏夜流萤",
+		title: "心理健康",
 		imgurl:
-			"https://weavatar.com/avatar/d252655d40d6874417a720bad0a6c5f77f8f6a1fd2f882f8f338402dc37e4190?s=640",
-		desc: "飞萤之火自无梦的长夜亮起，绽放在终竟的明天。",
-		siteurl: "https://blog.cuteleaf.cn",
-		tags: ["Blog"],
-		weight: 10, // 权重，数字越大排序越靠前
-		enabled: false, // 是否启用
+			"/assets/images/logo/cornhub.png",
+		desc: "JmACG|PicaComic|“点击看看”",
+		siteurl: "https://www.studytimes.cn/whjy/202606/t20260605_88150.html",
+		tags: ["???"],
+		weight: 7, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
 	},
 	{
-		title: "Firefly Docs",
-		imgurl: "https://docs-firefly.cuteleaf.cn/logo.png",
-		desc: "Firefly主题模板文档",
-		siteurl: "https://docs-firefly.cuteleaf.cn",
-		tags: ["Docs"],
-		weight: 9,
-		enabled: false,
+		title: "在线观看",
+		imgurl: "/assets/images/logo/mxgh.png",
+		desc: "历任校长|名师风采|校史馆",
+		siteurl: "https://vdse.bdstatic.com//192d9a98d782d9c74c96f09db9378d93.mp4",
+		tags: ["校方文档"],
+		weight: 10,
+		enabled: true,
 	},
 	{
-		title: "Astro",
-		imgurl: "https://avatars.githubusercontent.com/u/44914786?v=4&s=640",
-		desc: "The web framework for content-driven websites. ⭐️ Star to support our work!",
-		siteurl: "https://github.com/withastro/astro",
-		tags: ["Framework"],
+		title: "少女乐队",
+		imgurl: "/assets/images/logo/yd.png",
+		desc: "GBC · 結束バンド · 放学后茶会",
+		siteurl: "https://www.gbcclub.com/",
+		tags: ["社团活动"],
 		weight: 8,
-		enabled: false,
+		enabled: true,
 	},
 ];
 
