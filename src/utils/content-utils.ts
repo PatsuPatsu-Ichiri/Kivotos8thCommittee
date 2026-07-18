@@ -9,17 +9,24 @@ async function getRawSortedPosts() {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 
-	const sorted = allBlogPosts.sort((a, b) => {
-		// 首先按置顶状态排序，置顶文章在前
-		if (a.data.pinned && !b.data.pinned) return -1;
-		if (!a.data.pinned && b.data.pinned) return 1;
+	const pinned = allBlogPosts.filter(p => p.data.pinned === true);
+	const normal = allBlogPosts.filter(p => p.data.pinned !== true);
 
-		// 如果置顶状态相同，则按发布日期排序
-		const dateA = new Date(a.data.published);
-		const dateB = new Date(b.data.published);
-		return dateA > dateB ? -1 : 1;
-	});
-	return sorted;
+	pinned.sort((a, b) => {// 2. 置顶按日期排序（最新的在前）
+    const dateA = new Date(a.data.published);
+    const dateB = new Date(b.data.published);
+    return dateA > dateB ? -1 : 1;
+  });
+
+  	// 3. 普通文章随机打乱（Fisher–Yates 洗牌）
+  	for (let i = normal.length - 1; i > 0; i--) {
+    	const j = Math.floor(Math.random() * (i + 1));
+    	[normal[i], normal[j]] = [normal[j], normal[i]];
+  }
+
+	return [...pinned, ...normal];
+
+
 }
 
 export async function getSortedPosts() {

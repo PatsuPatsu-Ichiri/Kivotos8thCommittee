@@ -12,7 +12,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "8thCommittee",
 
 	// 站点 URL
-	site_url: "https://firefly.cuteleaf.cn",//
+	site_url: "https://8thcommittee.cc.cd",//
 
 	// 站点描述
 	description:
@@ -20,7 +20,7 @@ export const siteConfig: SiteConfig = {
 
 	// 站点关键词
 	keywords: [
-		//"Firefly",
+
 		"Fuwari",
 		"Astro",
 		"ACGN",

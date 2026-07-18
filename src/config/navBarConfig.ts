@@ -158,7 +158,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		pageKey: "guestbook",
 	},
 	About: {
-		name: "关于我",
+		name: "关于本站",
 		url: "/about/",
 		icon: "material-symbols:person",
 	},
