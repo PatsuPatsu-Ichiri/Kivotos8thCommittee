@@ -43,159 +43,34 @@ const description =
 ---
 
 <MainGridLayout title={title} description={description}>
-  <div
-    class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32"
-  >
-    <div class="card-base z-10 px-9 py-6 relative w-full">
-      <!-- 页面标题和描述 -->
-      <div class="mb-4">
-        <div class="flex items-center gap-3 mb-3">
-          <div
-            class="h-8 w-8 rounded-lg bg-(--primary) flex items-center justify-center text-white dark:text-black/70"
-          >
-            <Icon is:inline name="material-symbols:group" class="text-[1.5rem]" />
-          </div>
-          <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
-            {title}
-          </div>
-        </div>
-        {
-          description && (
-            <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
-              {description}
-            </p>
-          )
-        }
-      </div>
-
-      <!-- 搜索框 -->
-      {
-        items.length > 0 && (
-          <friend-filter class="mb-6">
-            <div class="relative mb-3">
-              <Icon is:inline
-                name="material-symbols:search"
-                class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500 text-lg pointer-events-none"
-              />
-              <input
-                type="text"
-                data-search
-                placeholder={i18n(I18nKey.searchFriends) || "搜索友链..."}
-                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-(--line-divider) bg-transparent text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:border-(--primary) focus:ring-1 focus:ring-(--primary) outline-none transition-all duration-200 text-sm"
-              />
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <button
-                data-tag="all"
-                class="category-pill px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200"
-                data-active
-              >
-                {i18n(I18nKey.all)}
-              </button>
-              {allTags.map((tag) => (
-                <button
-                  data-tag={tag}
-                  class="category-pill px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200"
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          </friend-filter>
-        )
-      }
-
-      <div class="friends-grid my-4">
-        {
-          items.length === 0 && (
-            <div class="col-span-full flex flex-col items-center justify-center py-12 text-neutral-400 dark:text-neutral-500">
-              <Icon is:inline name="material-symbols:group-off-outline" class="text-4xl mb-3" />
-              <div class="text-sm">{i18n(I18nKey.friendsEmpty)}</div>
-            </div>
-          )
-        }
-        {
-          items.map((item) => (
-            <a
-              href={item.siteurl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-tags={item.tags?.join(",")}
-              class="friend-card group flex items-center gap-3 p-2.5 rounded-xl border border-(--line-divider) hover:border-(--primary) hover:bg-(--card-bg) transition-all duration-300 hover:shadow-lg relative overflow-hidden"
-            >
-              {/* 背景装饰 - 仅悬停显示 */}
-              <div class="absolute inset-0 bg-(--primary) opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none" />
-
-              {/* 头像 */}
-              <div class="relative w-16 h-16 shrink-0 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-black/5 dark:border-white/5 group-hover:scale-105 transition-transform duration-300">
-                <img
-                  src={item.imgurl}
-                  alt={item.title}
-                  class="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* 内容 */}
-              <div class="grow min-w-0 flex flex-col justify-center gap-0.5">
-                <div class="flex items-center justify-between">
-                  <div class="font-bold text-base text-neutral-900 dark:text-neutral-100 group-hover:text-(--primary) transition-colors truncate pr-4">
-                    {item.title}
-                  </div>
-                  {/* 外部链接图标 */}
-                  <Icon is:inline
-                    name="material-symbols:arrow-outward-rounded"
-                    class="text-(--primary) text-lg opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                  />
-                </div>
-
-                <div
-                  class="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-1"
-                  title={item.desc}
-                >
-                  {item.desc}
-                </div>
-
-                {/* 标签 */}
-                <div class="flex flex-wrap gap-1 mt-1">
-                  {item.tags && item.tags.length > 0
-                    ? item.tags
-                        .slice(0, 3)
-                        .map((tag) => (
-                          <span class="text-[0.65rem] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 transition-colors duration-300">
-                            {tag}
-                          </span>
-                        ))
-                    : null}
-                </div>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-
-      {/* 搜索无结果提示 */}
-      <div class="friends-empty hidden flex-col items-center justify-center py-12 text-neutral-400 dark:text-neutral-500">
-        <Icon is:inline name="material-symbols:search-off-rounded" class="text-4xl mb-3" />
-        <div class="text-sm">{i18n(I18nKey.searchNoResults)}</div>
-      </div>
-    </div>
-  </div>
-
+  
+   <!-- ============================================================ -->
+  <!-- 容器 B：社团招新专栏（MDX 自定义内容）                          -->
+  <!--    与上面的特色栏目完全分离，拥有独立的容器                    -->
+  <!-- ============================================================ -->
   {friendsPageConfig.showCustomContent !== false && (
-    <div class="mt-4 card-base z-10 px-9 py-6 relative w-full">
-      <Markdown class="">
-        <Content />
-      </Markdown>
+      <div class="flex w-full rounded-(--radius-large) overflow-hidden relative">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+        <Markdown class="">
+          <Content />
+        </Markdown>
+      </div>
     </div>
   )}
 
-  <!-- 评论区 -->
+  <!-- ============================================================ -->
+  <!-- 容器 C：评论区                                                  -->
+  <!-- ============================================================ -->
   {isCommentEnabled && (
-    <div class="mt-4">
+    <div>
       <Comment post={friendsPost} customPath="/friends/" />
     </div>
-  )}
+    )}
 
+
+  <!-- ============================================================ -->
+  <!-- 自定义 Web Component：friend-filter                           -->
+  <!-- ============================================================ -->
   <script slot="head" is:inline>
     if (!customElements.get("friend-filter")) {
       class FriendFilter extends HTMLElement {
@@ -279,6 +154,145 @@ const description =
     }
   </script>
 
+  <!-- ============================================================ -->
+  <!-- 容器 A：特色栏目（友链列表）                                    -->
+  <!-- ============================================================ -->
+  <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+      <div class="card-base z-10 px-9 py-6 relative w-full">
+      
+      <!-- 1. 页面标题和描述 -->
+      <div class="mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div
+            class="h-8 w-8 rounded-lg bg-(--primary) flex items-center justify-center text-white dark:text-black/70"
+          >
+            <Icon is:inline name="material-symbols:group" class="text-[1.5rem]" />
+          </div>
+          <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+            {title}
+          </div>
+        </div>
+        {
+          description && (
+            <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+              {description}
+            </p>
+          )
+        }
+      </div>
+
+      <!-- 2. 搜索框 + 标签筛选（仅当友链列表不为空时显示） -->
+      {
+        items.length > 0 && (
+          <friend-filter class="mb-6">
+            <div class="relative mb-3">
+              <Icon is:inline
+                name="material-symbols:search"
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500 text-lg pointer-events-none"
+              />
+              <input
+                type="text"
+                data-search
+                placeholder={i18n(I18nKey.searchFriends) || "搜索友链..."}
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-(--line-divider) bg-transparent text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 dark:placeholder-neutral-500 focus:border-(--primary) focus:ring-1 focus:ring-(--primary) outline-none transition-all duration-200 text-sm"
+              />
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button
+                data-tag="all"
+                class="category-pill px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200"
+                data-active
+              >
+                {i18n(I18nKey.all)}
+              </button>
+              {allTags.map((tag) => (
+                <button
+                  data-tag={tag}
+                  class="category-pill px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200"
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </friend-filter>
+        )
+      }
+
+      <!-- 3. 友链卡片网格 -->
+      <div class="friends-grid my-4">
+        {
+          items.length === 0 && (
+            <div class="col-span-full flex flex-col items-center justify-center py-12 text-neutral-400 dark:text-neutral-500">
+              <Icon is:inline name="material-symbols:group-off-outline" class="text-4xl mb-3" />
+              <div class="text-sm">{i18n(I18nKey.friendsEmpty)}</div>
+            </div>
+          )
+        }
+        {
+          items.map((item) => (
+            <a
+              href={item.siteurl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-tags={item.tags?.join(",")}
+              class="friend-card group flex items-center gap-3 p-2.5 rounded-xl border border-(--line-divider) hover:border-(--primary) hover:bg-(--card-bg) transition-all duration-300 hover:shadow-lg relative overflow-hidden"
+            >
+              <div class="absolute inset-0 bg-(--primary) opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none" />
+
+              <div class="relative w-16 h-16 shrink-0 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 border border-black/5 dark:border-white/5 group-hover:scale-105 transition-transform duration-300">
+                <img
+                  src={item.imgurl}
+                  alt={item.title}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+
+              <div class="grow min-w-0 flex flex-col justify-center gap-0.5">
+                <div class="flex items-center justify-between">
+                  <div class="font-bold text-base text-neutral-900 dark:text-neutral-100 group-hover:text-(--primary) transition-colors truncate pr-4">
+                    {item.title}
+                  </div>
+                  <Icon is:inline
+                    name="material-symbols:arrow-outward-rounded"
+                    class="text-(--primary) text-lg opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                  />
+                </div>
+
+                <div
+                  class="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-1"
+                  title={item.desc}
+                >
+                  {item.desc}
+                </div>
+
+                <div class="flex flex-wrap gap-1 mt-1">
+                  {item.tags && item.tags.length > 0
+                    ? item.tags
+                        .slice(0, 3)
+                        .map((tag) => (
+                          <span class="text-[0.65rem] px-1.5 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 transition-colors duration-300">
+                            {tag}
+                          </span>
+                        ))
+                    : null}
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- 4. 搜索无结果提示 -->
+      <div class="friends-empty hidden flex-col items-center justify-center py-12 text-neutral-400 dark:text-neutral-500">
+        <Icon is:inline name="material-symbols:search-off-rounded" class="text-4xl mb-3" />
+        <div class="text-sm">{i18n(I18nKey.searchNoResults)}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 自定义样式                                                     -->
+  <!-- ============================================================ -->
   <style is:global>
     .friends-grid {
       display: grid;
@@ -287,3 +301,6 @@ const description =
     }
   </style>
 </MainGridLayout>
+
+
+

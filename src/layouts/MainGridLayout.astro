@@ -144,8 +144,7 @@ const showBannerPostMeta =
 const showBannerDim = (isBannerMode || isFullscreenMode) && isBackgroundEnabled;
 const dimOpacity = backgroundWallpaper.common?.dimOpacity ?? 0.15;
 
-const showBannerPageTitle =
-	(isBannerMode || isFullscreenMode) &&
+const showBannerPageTitle = 
 	isBackgroundEnabled &&
 	!isHomePageCheck &&
 	!isPostPage &&
@@ -383,7 +382,7 @@ const hasMultipleImages =
             </div>
         )}
         {backgroundImages.desktop.length > 0 && (
-            <div class="banner-image-slot-desktop absolute inset-0 hidden lg:block">
+            <div class="banner-image-slot-desktop absolute inset-0 lg:block">
                 <ImageWrapper
                     id="banner"
                     alt="Desktop background image of the blog"

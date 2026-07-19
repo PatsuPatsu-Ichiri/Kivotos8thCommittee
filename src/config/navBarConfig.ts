@@ -78,7 +78,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		// 子菜单
 		children: [
 			{
-				name: "GitHub仓库",
+				name: "GitHub源码仓库",
 				url: "https://github.com/PatsuPatsu-Ichiri/Kivotos8thCommittee",
 				external: true,
 				icon: "fa7-brands:github",
@@ -90,7 +90,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 				icon: "fa7-brands:qq",
 			},*/
 			{
-				name: "Firefly文档",
+				name: "技术开发文档@Firefly",
 				url: "https://docs-firefly.cuteleaf.cn",
 				external: true,
 				icon: "material-symbols:docs",

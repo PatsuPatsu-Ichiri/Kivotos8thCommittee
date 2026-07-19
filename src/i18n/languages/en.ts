@@ -53,14 +53,12 @@ export const en: Translation = {
 	[Key.commentNotConfigured]: "Comment system not configured",
 	[Key.guestbookCommentHint]:
 		"You have not enabled the comment system in the configuration file yet. After enabling it, visitors will be able to leave messages here",
-	[Key.friends]: "Friends",
-	[Key.friendsDescription]:
-		"Here are my friends, welcome to visit and communicate with each other",
-	[Key.searchFriends]: "Search friends...",
-	[Key.friendsEmpty]: "No friends yet.",
-	[Key.guestbook]: "Guestbook",
-	[Key.guestbookDescription]:
-		"Welcome to leave your mark here, share your thoughts and suggestions",
+	[Key.friends]: "Featured Columns",
+  	[Key.friendsDescription]: "TL;DR: This episode is amazing",
+  	[Key.searchFriends]: "Search columns...",
+ 	[Key.friendsEmpty]: "No featured columns available",
+  	[Key.guestbook]: "Guestbook",
+  	[Key.guestbookDescription]: "Welcome to add your club recruitment column here",
 	[Key.untitled]: "Untitled",
 	[Key.uncategorized]: "Uncategorized",
 	[Key.noTags]: "No Tags",

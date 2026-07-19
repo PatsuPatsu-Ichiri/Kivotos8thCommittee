@@ -3,7 +3,7 @@ import type { Translation } from "../translation";
 
 export const zh_TW: Translation = {
 	[Key.home]: "首頁",
-	[Key.about]: "關於我",
+	[Key.about]: "關於本站",
 	[Key.archive]: "歸檔",
 	[Key.search]: "搜尋",
 	[Key.searchNoResults]: "找不到相關結果。",
@@ -53,12 +53,12 @@ export const zh_TW: Translation = {
 	[Key.commentNotConfigured]: "評論系統暫未配置",
 	[Key.guestbookCommentHint]:
 		"您還未在配置文件中啟用評論系統，啟用後訪客才可在此留言",
-	[Key.friends]: "友鏈",
-	[Key.friendsDescription]: "這裡是我的朋友們，歡迎互相訪問交流",
-	[Key.searchFriends]: "搜尋友鏈...",
-	[Key.friendsEmpty]: "暫無友情連結",
-	[Key.guestbook]: "留言",
-	[Key.guestbookDescription]: "歡迎在這裡留下你的足跡，分享你的想法和建議",
+	[Key.friends]: "特色欄目",
+  	[Key.friendsDescription]: "省流：這期神了",
+  	[Key.searchFriends]: "搜尋欄目...",
+  	[Key.friendsEmpty]: "暫無特色欄目",
+  	[Key.guestbook]: "留言",
+  	[Key.guestbookDescription]: "歡迎在這裡新增您的社團招新欄目",
 	[Key.untitled]: "無標題",
 	[Key.uncategorized]: "未分類",
 	[Key.noTags]: "無標籤",
