@@ -31,6 +31,34 @@ const len = page.data.length;
   }
 </MainGridLayout>
 
+<script>//首页帖子随机排列JS
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('post-list-container');
+    if (!container) return;
+    
+    // 获取所有文章卡片
+    const allItems = Array.from(container.children);
+    if (allItems.length <= 1) return;
+    
+    // ✅ 分离置顶和普通文章
+    const pinnedItems = allItems.filter(item => 
+      item.classList.contains('pinned')
+    );
+    const normalItems = allItems.filter(item => 
+      !item.classList.contains('pinned')
+    );
+    
+    // 只打乱普通文章
+    for (let i = normalItems.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      container.insertBefore(normalItems[j], normalItems[i]);
+      [normalItems[i], normalItems[j]] = [normalItems[j], normalItems[i]];
+    }
+    
+    console.log(`✅ 置顶 ${pinnedItems.length} 篇，普通 ${normalItems.length} 篇已随机`);
+  });
+</script>
+
 <script>
   // 响应式分页处理脚本
   document.addEventListener("DOMContentLoaded", function () {

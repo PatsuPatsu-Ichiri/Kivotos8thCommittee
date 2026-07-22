@@ -18,11 +18,11 @@ async function getRawSortedPosts() {
     return dateA > dateB ? -1 : 1;
   });
 
-  	// 3. 普通文章随机打乱（Fisher–Yates 洗牌）
-  	for (let i = normal.length - 1; i > 0; i--) {
-    	const j = Math.floor(Math.random() * (i + 1));
-    	[normal[i], normal[j]] = [normal[j], normal[i]];
-  }
+  	normal.sort((a, b) => {
+		const dateA = new Date(a.data.published);
+		const dateB = new Date(b.data.published);
+		return dateA > dateB ? -1 : 1; // 最新在前
+	});
 
 	return [...pinned, ...normal];
 

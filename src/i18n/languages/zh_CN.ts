@@ -302,7 +302,7 @@ export const zh_CN: Translation = {
 	// 站点统计
 	[Key.siteStats]: "站点统计",
 	[Key.siteStatsPostCount]: "文章",
-	[Key.siteStatsCategoryCount]: "分类",
+	[Key.siteStatsCategoryCount]: "类别",
 	[Key.siteStatsTagCount]: "标签",
 	[Key.siteStatsTotalWords]: "总字数",
 	[Key.siteStatsRunningDays]: "运行时长",

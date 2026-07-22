@@ -209,7 +209,18 @@ const updatedGridConfig: ResponsiveSidebarConfig = {
 	tabletSidebar: effectiveTabletSidebar,
 };
 
-const { gridCols } = generateGridClasses(updatedGridConfig);
+const originalGridCols = generateGridClasses(updatedGridConfig).gridCols;
+
+// 判断右侧是否有实际内容
+const hasRightContent = effectiveHasRightComponents || 
+  sidebarLayoutConfig.position === "right" || 
+  sidebarLayoutConfig.position === "both";
+
+// 文章页面且右侧无内容时，使用 2 列布局
+const gridCols = (isPostPage && !hasRightContent)
+  ? "grid-cols-1 md:grid-cols-[280px_1fr]"  // 左侧边栏 + 主内容
+  : originalGridCols;
+
 const sidebarClass = generateSidebarClasses(updatedGridConfig);
 const rightSidebarClass =
 	effectiveIsBothSidebars || sidebarLayoutConfig.position === "right"
@@ -382,7 +393,7 @@ const hasMultipleImages =
             </div>
         )}
         {backgroundImages.desktop.length > 0 && (
-            <div class="banner-image-slot-desktop absolute inset-0 lg:block">
+            <div class="banner-image-slot-desktop absolute inset-0 hidden lg:block">
                 <ImageWrapper
                     id="banner"
                     alt="Desktop background image of the blog"
@@ -932,4 +943,3 @@ const hasMultipleImages =
   }
 
 </style>
-
