@@ -33,8 +33,11 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		],
 	});
 
-	// 友链
+	// 特色栏目
 	links.push(LinkPresets.Friends);
+
+	// 宣传栏
+	links.push(LinkPresets.displayboard);
 
 	// 留言板
 	links.push(LinkPresets.Guestbook);
@@ -62,7 +65,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		url: "#",
 		icon: "material-symbols:info",
 		children: [
-			// 打赏
+			// 捐赠
 			LinkPresets.Sponsor,
 
 			// 关于页面
@@ -144,6 +147,12 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		url: "/friends/",
 		icon: "material-symbols:group",
 		pageKey: "friends",
+	},
+	displayboard: {
+		name: "宣传栏",
+		url: "/displayboard/",
+		icon: "material-symbols:art-track",
+		pageKey: "displayboard",
 	},
 	Sponsor: {
 		name: "捐赠",

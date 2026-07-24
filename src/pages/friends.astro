@@ -48,111 +48,6 @@ const description =
   <!-- 容器 B：社团招新专栏（MDX 自定义内容）                          -->
   <!--    与上面的特色栏目完全分离，拥有独立的容器                    -->
   <!-- ============================================================ -->
-  {friendsPageConfig.showCustomContent !== false && (
-      <div class="flex w-full rounded-(--radius-large) overflow-hidden relative">
-        <div class="card-base z-10 px-9 py-6 relative w-full">
-        <Markdown class="">
-          <Content />
-        </Markdown>
-      </div>
-    </div>
-  )}
-
-  <!-- ============================================================ -->
-  <!-- 容器 C：评论区                                                  -->
-  <!-- ============================================================ -->
-  {isCommentEnabled && (
-    <div>
-      <Comment post={friendsPost} customPath="/friends/" />
-    </div>
-    )}
-
-
-  <!-- ============================================================ -->
-  <!-- 自定义 Web Component：friend-filter                           -->
-  <!-- ============================================================ -->
-  <script slot="head" is:inline>
-    if (!customElements.get("friend-filter")) {
-      class FriendFilter extends HTMLElement {
-        selectedTag = "all";
-
-        constructor() {
-          super();
-        }
-
-        connectedCallback() {
-          this.addEventListener("click", this.handleClick);
-          const input = this.querySelector("[data-search]");
-          if (input) {
-            input.addEventListener("input", () => this.applyFilters());
-          }
-        }
-
-        disconnectedCallback() {
-          this.removeEventListener("click", this.handleClick);
-        }
-
-        handleClick(e) {
-          const target = e.target;
-          const button = target.closest("button");
-          if (!button) return;
-
-          this.selectedTag = button.dataset.tag;
-          const filters = this.querySelectorAll("button");
-
-          filters.forEach((f) => {
-            f.removeAttribute("data-active");
-          });
-          button.setAttribute("data-active", "");
-
-          this.applyFilters();
-        }
-
-        applyFilters() {
-          const container = this.closest(".card-base");
-          if (!container) return;
-
-          const input = this.querySelector("[data-search]");
-          const query = (input?.value || "").toLowerCase().trim();
-          const cards = container.querySelectorAll(".friend-card");
-
-          let hasVisible = false;
-
-          cards.forEach((card) => {
-            const cardEl = card;
-            const tags = (cardEl.dataset.tags || "").split(",");
-            const name = (cardEl.querySelector(".font-bold")?.textContent || "").toLowerCase();
-            const desc = (cardEl.querySelector(".line-clamp-1")?.textContent || "").toLowerCase();
-
-            const tagMatch =
-              this.selectedTag === "all" ||
-              (this.selectedTag && tags.includes(this.selectedTag));
-            const searchMatch =
-              !query ||
-              name.includes(query) ||
-              desc.includes(query) ||
-              tags.some((t) => t.toLowerCase().includes(query));
-
-            if (tagMatch && searchMatch) {
-              cardEl.style.display = "";
-              cardEl.classList.add("animate-fade-in-up");
-              hasVisible = true;
-            } else {
-              cardEl.style.display = "none";
-              cardEl.classList.remove("animate-fade-in-up");
-            }
-          });
-
-          const emptyEl = container.querySelector(".friends-empty");
-          if (emptyEl) {
-            emptyEl.classList.toggle("hidden", hasVisible);
-            emptyEl.classList.toggle("flex", !hasVisible);
-          }
-        }
-      }
-      customElements.define("friend-filter", FriendFilter);
-    }
-  </script>
 
   <!-- ============================================================ -->
   <!-- 容器 A：特色栏目（友链列表）                                    -->
@@ -304,3 +199,109 @@ const description =
 
 
 
+<!-- -
+  {friendsPageConfig.showCustomContent !== false && (
+      <div class="flex w-full rounded-(--radius-large) overflow-hidden relative">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+        <Markdown class="">
+          <Content />
+        </Markdown>
+      </div>
+    </div>
+  )}
+
+
+  //容器 C：评论区     
+  {isCommentEnabled && (
+    <div>
+      <Comment post={friendsPost} customPath="/friends/" />
+    </div>
+    )}
+
+
+
+  //自定义 Web Component：friend-filter                      
+  <script slot="head" is:inline>
+    if (!customElements.get("friend-filter")) {
+      class FriendFilter extends HTMLElement {
+        selectedTag = "all";
+
+        constructor() {
+          super();
+        }
+
+        connectedCallback() {
+          this.addEventListener("click", this.handleClick);
+          const input = this.querySelector("[data-search]");
+          if (input) {
+            input.addEventListener("input", () => this.applyFilters());
+          }
+        }
+
+        disconnectedCallback() {
+          this.removeEventListener("click", this.handleClick);
+        }
+
+        handleClick(e) {
+          const target = e.target;
+          const button = target.closest("button");
+          if (!button) return;
+
+          this.selectedTag = button.dataset.tag;
+          const filters = this.querySelectorAll("button");
+
+          filters.forEach((f) => {
+            f.removeAttribute("data-active");
+          });
+          button.setAttribute("data-active", "");
+
+          this.applyFilters();
+        }
+
+        applyFilters() {
+          const container = this.closest(".card-base");
+          if (!container) return;
+
+          const input = this.querySelector("[data-search]");
+          const query = (input?.value || "").toLowerCase().trim();
+          const cards = container.querySelectorAll(".friend-card");
+
+          let hasVisible = false;
+
+          cards.forEach((card) => {
+            const cardEl = card;
+            const tags = (cardEl.dataset.tags || "").split(",");
+            const name = (cardEl.querySelector(".font-bold")?.textContent || "").toLowerCase();
+            const desc = (cardEl.querySelector(".line-clamp-1")?.textContent || "").toLowerCase();
+
+            const tagMatch =
+              this.selectedTag === "all" ||
+              (this.selectedTag && tags.includes(this.selectedTag));
+            const searchMatch =
+              !query ||
+              name.includes(query) ||
+              desc.includes(query) ||
+              tags.some((t) => t.toLowerCase().includes(query));
+
+            if (tagMatch && searchMatch) {
+              cardEl.style.display = "";
+              cardEl.classList.add("animate-fade-in-up");
+              hasVisible = true;
+            } else {
+              cardEl.style.display = "none";
+              cardEl.classList.remove("animate-fade-in-up");
+            }
+          });
+
+          const emptyEl = container.querySelector(".friends-empty");
+          if (emptyEl) {
+            emptyEl.classList.toggle("hidden", hasVisible);
+            emptyEl.classList.toggle("flex", !hasVisible);
+          }
+        }
+      }
+      customElements.define("friend-filter", FriendFilter);
+    }
+  </script>
+
+->

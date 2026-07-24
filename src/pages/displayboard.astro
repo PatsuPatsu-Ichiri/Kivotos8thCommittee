@@ -1,0 +1,35 @@
+---
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { i18n } from "@/i18n/translation";
+import I18nKey from "@/i18n/i18nKey";
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/common/Markdown.astro";
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "@/config";
+
+// 检查页面是否启用
+if (false) {//!siteConfig.pages.displayboard
+	return Astro.redirect("/404/");
+}
+
+const displayboard = await getEntry("spec", "displayboard");
+
+if (!displayboard) {
+	throw new Error("displayboard page content not found");
+}
+
+const { Content } = await render(displayboard);
+
+// 页面标题和描述
+const title = "宣传栏";
+const description = "社团招新、活动公告、校园通知";
+
+---
+
+<MainGridLayout title={title} description={description}>
+  <div class="card-base px-9 py-6 relative w-full">
+    <Markdown class="">
+      <Content />
+    </Markdown>
+  </div>
+</MainGridLayout>
