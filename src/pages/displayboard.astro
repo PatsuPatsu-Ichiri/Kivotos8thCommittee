@@ -8,7 +8,7 @@ import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config";
 
 // 检查页面是否启用
-if (false) {//!siteConfig.pages.displayboard
+if (!siteConfig.pages.displayboard) {
 	return Astro.redirect("/404/");
 }
 
